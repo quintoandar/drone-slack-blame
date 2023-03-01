@@ -78,6 +78,7 @@ func (p Plugin) Exec() error {
 	// create the API
 	retryClient := retryablehttp.NewClient()
 	retryClient.RetryMax = 2
+	retryClient.Logger = nil
 	api := slack.New(p.Config.Token, slack.OptionHTTPClient(retryClient.StandardClient()))
 
 	// verify the connection
